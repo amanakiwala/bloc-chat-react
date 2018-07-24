@@ -22,14 +22,20 @@ class RoomList extends Component {
 		});
 	}
 
-	createRoom(newRoom){
+	createRoom(e){
+		e.preventDefault()
+		
 		this.roomsRef.push({
-			name: newRoom
+			name: this.state.newRoom
 		})
 		this.setState({ newRoom: '' });
 	}
-	handleChange(event) {
-        this.setState({newRoom: event.target.value });
+	handleChange(e) {
+        e.preventDefault()
+        
+        this.setState({newRoom: e.target.value });
+
+
     }
 
 	render(){
@@ -40,8 +46,9 @@ class RoomList extends Component {
 		           <li key={room.key}>{ room.name }</li> 
 		       )}
 		  	</div>
-		  	<form onSubmit ={(e) => {e.preventDefault();this.createRoom(this.state.newRoom)}} >
-		  		<input type ="text" onChange={ this.handleChange.bind(this) }/>
+		  	<form onSubmit ={ this.createRoom.bind(this)}>
+		  	           
+                <input type ="text" value={this.state.newRoom} onChange={ this.handleChange.bind(this) }/>
 		  		<input type ="submit" />
 		  	</form>
         </section>

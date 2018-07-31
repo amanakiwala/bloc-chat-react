@@ -19,15 +19,18 @@ class App extends Component {
   constructor(props){
     super(props);
       this.state = {
-        activeRoom : null,
+        activeRoom : '',
+        
 
       }
-    
+      
   }
-
   setRoom(room){
     this.setState({activeRoom: room});
+    console.log(this.state.activeRoom.key)
   }
+
+  
   
   render() {
     return (

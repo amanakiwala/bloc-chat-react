@@ -26,9 +26,9 @@ class MessageList extends Component{
 		
 		this.messagesRef.push({
 			
-		    username: "<USERNAME HERE>",
+		    username: this.props.user.displayName,
 		    content: this.state.newMessage,
-		    sentAt: Date.now(),
+		    sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
 		    roomId: this.props.activeRoom.key
 
 		})
@@ -56,7 +56,7 @@ class MessageList extends Component{
                   }) .map((message) => {
                   	 return <li key={message.key}> 
 		                      <div>
-		                        {message.content}
+		                        {message.username}:   {message.content}
 		                      </div>  
                             </li>
                   })
